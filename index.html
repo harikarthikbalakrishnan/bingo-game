@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#6366f1" />
+    <title>Bingo Game - Multiplayer Fun!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen active">
+      <div class="container">
+        <div class="logo-container">
+          <div class="logo">🎯</div>
+          <h1 class="title">BINGO</h1>
+          <p class="subtitle">Multiplayer Game</p>
+        </div>
+
+        <div class="card">
+          <input
+            type="text"
+            id="nickname-input"
+            class="input"
+            placeholder="Enter your nickname"
+            maxlength="15"
+          />
+          <button id="create-btn" class="btn btn-primary">
+            Create New Game
+          </button>
+          <div class="divider">
+            <span>OR</span>
+          </div>
+          <input
+            type="text"
+            id="session-input"
+            class="input"
+            placeholder="Enter session code"
+            maxlength="6"
+          />
+          <button id="join-btn" class="btn btn-secondary">Join Game</button>
+        </div>
+
+        <div id="error-message" class="error-message"></div>
+      </div>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen">
+      <div class="container">
+        <div class="header">
+          <h2 class="screen-title">Waiting Room</h2>
+          <div class="session-code-display">
+            <span class="label">Session Code:</span>
+            <span id="lobby-session-code" class="code"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="players-list">
+            <h3 class="section-title">
+              Players (<span id="player-count">0</span>/5)
+            </h3>
+            <div id="lobby-players"></div>
+          </div>
+
+          <div class="lobby-actions">
+            <button
+              id="start-game-btn"
+              class="btn btn-primary"
+              style="display: none"
+            >
+              Start Game
+            </button>
+            <p class="waiting-text">Waiting for host to start...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+      <div class="game-container">
+        <div class="game-header">
+          <div class="session-info">
+            <span class="session-code-small" id="game-session-code"></span>
+          </div>
+          <div class="bingo-letters">
+            <span class="letter" data-letter="B">B</span>
+            <span class="letter" data-letter="I">I</span>
+            <span class="letter" data-letter="N">N</span>
+            <span class="letter" data-letter="G">G</span>
+            <span class="letter" data-letter="O">O</span>
+          </div>
+        </div>
+
+        <div class="turn-indicator">
+          <div id="turn-message" class="turn-message"></div>
+        </div>
+
+        <div class="board-container">
+          <div id="bingo-board" class="bingo-board"></div>
+        </div>
+
+        <div class="game-info">
+          <div class="info-section">
+            <h4 class="info-title">Called Numbers</h4>
+            <div id="called-numbers" class="called-numbers-list"></div>
+          </div>
+
+          <div class="info-section">
+            <h4 class="info-title">Players</h4>
+            <div id="game-players" class="game-players-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winner Screen -->
+    <div id="winner-screen" class="screen">
+      <div class="container">
+        <div class="winner-content">
+          <div class="confetti-container" id="confetti"></div>
+          <div class="trophy">🏆</div>
+          <h1 class="winner-title">BINGO!</h1>
+          <p class="winner-name" id="winner-name"></p>
+          <p class="winner-subtitle">Congratulations!</p>
+          <button id="new-game-btn" class="btn btn-primary">New Game</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
